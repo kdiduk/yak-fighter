@@ -1,11 +1,11 @@
 extends Node2D
 
-export var level_index = 0
-export var scroll_speed = 40
+export var level_index: int = 0
+export var scroll_speed: int = 40
 onready var sprite = $Background/ParallaxLayer/Sprite
-const level_files = ["yf_level_001.png", "yf_level_002.png"]
-var screen_size
-var is_running = true
+const level_files: Array = ['yf_level_001.png', 'yf_level_002.png']
+var screen_size: Vector2
+var is_running: bool = true
 
 func _ready():
     if level_index > level_files.size():
@@ -19,8 +19,11 @@ func _process(delta):
     if is_running:
         sprite.move_local_y(delta * scroll_speed)
         if sprite.position.y >= sprite.get_rect().size.y - screen_size.y:
-            is_running = false
-            Mediator.title_screen()
+            level_finished()
+
+func level_finished():
+    is_running = false
+    Mediator.level_finish()
 
 
 # EOF
