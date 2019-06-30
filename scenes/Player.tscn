@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/images/player_yak.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16.0625, 16.0862 )
+extents = Vector2( 15, 15 )
 
 [node name="Player" type="Area2D"]
 position = Vector2( 128, 180 )

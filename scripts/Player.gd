@@ -1,18 +1,11 @@
 extends Area2D
 
 export var speed = 40
-var screen_size
-var sprite_size
-var bullet_scene
-var reload_timeout
-var bullet_pos
-
-func _ready():
-    screen_size = get_viewport_rect().size
-    sprite_size = $Sprite.get_rect().size
-    bullet_scene = preload("res://scenes/Bullet.tscn")
-    reload_timeout = 0.0
-    bullet_pos = sprite_size.x / 8
+onready var screen_size = get_viewport_rect().size
+onready var sprite_size = $Sprite.get_rect().size
+onready var bullet_scene = preload("res://scenes/Bullet.tscn")
+onready var reload_timeout = 0.0
+onready var bullet_pos = sprite_size.x / 8
 
 func _process(delta):
     var velocity = Vector2(0, 0)
