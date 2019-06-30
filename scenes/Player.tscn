@@ -7,7 +7,7 @@
 extents = Vector2( 16.0625, 16.0862 )
 
 [node name="Player" type="Area2D"]
-position = Vector2( 100, 200 )
+position = Vector2( 128, 180 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true

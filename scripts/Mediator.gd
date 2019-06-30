@@ -34,10 +34,10 @@ func level_finish():
         call_deferred("_deferred_goto_scene", scene)
 
 func title_screen():
-    call_deferred("_deferred_goto_scene",
-        _load_scene_node("res://scenes/TitleScreen.tscn"))
+    var scene = _load_scene_node("res://scenes/TitleScreen.tscn")
+    call_deferred("_deferred_goto_scene", scene)
 
-func _deferred_goto_scene(scene):
+func _deferred_goto_scene(scene: Node):
     current_scene.free()
 
     current_scene = scene
