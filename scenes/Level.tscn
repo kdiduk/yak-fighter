@@ -1,19 +1,38 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Level.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 20, -10, 0, 0, 0, 0, 230, -10 )
+}
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
+EnemyScene = ExtResource( 2 )
 
 [node name="Background" type="ParallaxBackground" parent="."]
+editor/display_folded = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+editor/display_folded = true
 
 [node name="Sprite" type="Sprite" parent="Background/ParallaxLayer"]
 centered = false
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource( 3 )]
 
-[node name="HUD" parent="." instance=ExtResource( 3 )]
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="EnemyTimer" type="Timer" parent="."]
+
+[node name="EnemyPath" type="Path2D" parent="."]
+position = Vector2( -1.90735e-06, -30 )
+curve = SubResource( 1 )
+
+[node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
+position = Vector2( 20, -10 )
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemySpawnTimer_timeout"]
