@@ -4,6 +4,10 @@ var current_scene
 var current_level: int = 0
 
 func _ready():
+    OS.set_window_size(Vector2(512, 480))
+    var screen_size = OS.get_screen_size(0)
+    var window_size = OS.get_window_size()
+    OS.set_window_position(screen_size*0.5 - window_size*0.5)
     var root = get_tree().get_root()
     current_scene = root.get_child(root.get_child_count() - 1)
 

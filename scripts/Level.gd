@@ -33,6 +33,7 @@ func _on_EnemySpawnTimer_timeout():
     add_child(enemy)
     enemy.position = $EnemyPath/EnemySpawnLocation.position
     enemy.velocity = Vector2(0, 50)
+    $Player.connect("bullet_hit", enemy, "_on_bullet_hit")
     _restart_enemy_timer(rand_range(3, 8))
 
 func _restart_enemy_timer(timeout: float):

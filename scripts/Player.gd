@@ -6,6 +6,7 @@ onready var sprite_size = $Sprite.get_rect().size
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 onready var reload_timeout = 0.0
 onready var bullet_pos = sprite_size.x / 8
+signal bullet_hit
 
 func _process(delta):
     var velocity = Vector2(0, 0)
@@ -37,11 +38,15 @@ func _process(delta):
     elif Input.is_action_pressed("fire"):
         var bullet = bullet_scene.instance()
         $BulletContainer.add_child(bullet)
+        bullet.connect("hit", self, "_on_bullet_hit")
         bullet.position = position
         bullet.position.y -= sprite_size.y/2
         bullet.position.x -= sprite_size.x/2
         bullet.position.x += bullet_pos
         bullet_pos = sprite_size.x - bullet_pos
         reload_timeout = 1.0
+
+func _on_bullet_hit(area: Area2D):
+    emit_signal("bullet_hit", area)
 
 # EOF
