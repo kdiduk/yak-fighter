@@ -1,12 +1,14 @@
 extends Area2D
 
 export var speed = 40
+export var hit_damage = 1
 onready var screen_size = get_viewport_rect().size
 onready var sprite_size = $Sprite.get_rect().size
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 onready var reload_timeout = 0.0
 onready var bullet_pos = sprite_size.x / 8
 signal bullet_hit
+signal player_hit
 
 func _process(delta):
     var velocity = Vector2(0, 0)
@@ -46,7 +48,10 @@ func _process(delta):
         bullet_pos = sprite_size.x - bullet_pos
         reload_timeout = 1.0
 
-func _on_bullet_hit(area: Area2D):
-    emit_signal("bullet_hit", area)
+func _on_bullet_hit(area: Area2D, damage: int):
+    emit_signal("bullet_hit", area, damage)
+
+func _on_player_area_entered(area):
+    emit_signal("player_hit", area, hit_damage)
 
 # EOF

@@ -33,7 +33,12 @@ func _on_EnemySpawnTimer_timeout():
     add_child(enemy)
     enemy.position = $EnemyPath/EnemySpawnLocation.position
     enemy.velocity = Vector2(0, 50)
-    $Player.connect("bullet_hit", enemy, "_on_bullet_hit")
+    var status = $Player.connect("bullet_hit", enemy, "_on_bullet_hit")
+    if status != OK:
+        print("Failed to connect player's `bullet_hit` to enemy's `_on_bullet_hit`")
+    status = $Player.connect("player_hit", enemy, "_on_player_hit")
+    if status != OK:
+        print("Failed to connect player's `player_hit` to enemy's `_on_player_hit`")
     _restart_enemy_timer(rand_range(3, 8))
 
 func _restart_enemy_timer(timeout: float):

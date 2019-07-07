@@ -22,6 +22,7 @@ config/icon="res://assets/images/icon.png"
 [autoload]
 
 Mediator="*res://scripts/Mediator.gd"
+PlayerData="*res://scripts/PlayerData.gd"
 
 [display]
 

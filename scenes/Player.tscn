@@ -21,3 +21,4 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="BulletContainer" type="Node" parent="."]
+[connection signal="area_entered" from="." to="." method="_on_player_area_entered"]
