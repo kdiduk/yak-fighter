@@ -24,13 +24,14 @@ stretch_mode = 4
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 78.0
 margin_right = 224.0
-margin_bottom = 104.0
+margin_bottom = 114.0
 size_flags_vertical = 3
 
 [node name="MenuButtonsContainer" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 108.0
+editor/display_folded = true
+margin_top = 118.0
 margin_right = 224.0
-margin_bottom = 164.0
+margin_bottom = 154.0
 size_flags_vertical = 0
 
 [node name="NewGameButton" type="Button" parent="VBoxContainer/MenuButtonsContainer"]
@@ -44,22 +45,10 @@ enabled_focus_mode = 0
 text = "NEW GAME"
 flat = true
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer/MenuButtonsContainer"]
+[node name="ExitGameButton" type="Button" parent="VBoxContainer/MenuButtonsContainer"]
 margin_top = 20.0
 margin_right = 224.0
 margin_bottom = 36.0
-focus_mode = 0
-size_flags_vertical = 0
-custom_fonts/font = ExtResource( 3 )
-shortcut_in_tooltip = false
-enabled_focus_mode = 0
-text = "OPTIONS"
-flat = true
-
-[node name="ExitGameButton" type="Button" parent="VBoxContainer/MenuButtonsContainer"]
-margin_top = 40.0
-margin_right = 224.0
-margin_bottom = 56.0
 focus_mode = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 3 )
@@ -69,7 +58,7 @@ text = "EXIT GAME"
 flat = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 168.0
+margin_top = 158.0
 margin_right = 224.0
 margin_bottom = 194.0
 size_flags_vertical = 3
