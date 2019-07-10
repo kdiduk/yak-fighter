@@ -27,6 +27,11 @@ func level_start():
     PlayerData.respawn()
     call_deferred("_deferred_goto_scene", scene)
 
+func level_restart():
+    var scene = _load_scene_node("res://scenes/LevelBeginScreen.tscn")
+    scene.level_index = PlayerData.current_level
+    call_deferred("_deferred_goto_scene", scene)
+
 func level_finish():
     if PlayerData.is_last_level():
         # TODO: game completed

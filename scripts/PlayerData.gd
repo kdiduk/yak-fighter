@@ -21,6 +21,7 @@ func reset_current_level() -> void:
     current_level = 1
 
 func next_level() -> void:
+    _restore_hp()
     if is_last_level():
         return
     current_level += 1
@@ -36,5 +37,12 @@ func respawn() -> void:
 
 func cause_damage(points: int) -> void:
     hitpoints -= points
-    if hitpoints <= 0 and lives > 0:
+    if hitpoints > 0:
+        return
+    if lives > 0:
+        # TODO: restart level
         lives -= 1
+        Mediator.level_restart()
+    else:
+        # TODO: game over
+        Mediator.title_screen()
