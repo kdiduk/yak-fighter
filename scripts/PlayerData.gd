@@ -11,6 +11,23 @@ func _ready():
 func _restore_hp() -> void:
     hitpoints = 100
 
+func reset_all():
+    reset_current_level()
+    score = 0
+    hitpoints = 100
+    lives = 3
+
+func reset_current_level() -> void:
+    current_level = 1
+
+func next_level() -> void:
+    if is_last_level():
+        return
+    current_level += 1
+
+func is_last_level() -> bool:
+    return (current_level == 2)
+
 func is_alive() -> bool:
     return hitpoints > 0
 

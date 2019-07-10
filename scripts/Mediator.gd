@@ -1,7 +1,6 @@
 extends Node
 
 var current_scene
-var current_level: int = 0
 
 func _ready():
     OS.set_window_size(Vector2(512, 480))
@@ -17,24 +16,26 @@ func _process(delta):
         OS.window_fullscreen = !OS.window_fullscreen
 
 func new_game():
-    current_level = 0
+    PlayerData.reset_all()
     var scene = _load_scene_node("res://scenes/LevelBeginScreen.tscn")
-    scene.level_index = current_level
+    scene.level_index = PlayerData.current_level
     call_deferred("_deferred_goto_scene", scene)
 
 func level_start():
     var scene = _load_scene_node("res://scenes/Level.tscn")
-    scene.level_index = current_level
+    scene.level_index = PlayerData.current_level
+    PlayerData.respawn()
     call_deferred("_deferred_goto_scene", scene)
 
 func level_finish():
-    current_level += 1
-    if current_level > 1:
-        current_level = 0
+    if PlayerData.is_last_level():
+        # TODO: game completed
+        PlayerData.reset_current_level()
         title_screen()
     else:
+        PlayerData.next_level()
         var scene = _load_scene_node("res://scenes/LevelBeginScreen.tscn")
-        scene.level_index = current_level
+        scene.level_index = PlayerData.current_level
         call_deferred("_deferred_goto_scene", scene)
 
 func title_screen():

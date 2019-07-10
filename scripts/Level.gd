@@ -1,7 +1,7 @@
 extends Node2D
 
 export (PackedScene) var EnemyScene
-export var level_index: int = 0
+export var level_index: int = 1 setget set_level_index
 export var scroll_speed: int = 40
 onready var sprite = $Background/ParallaxLayer/Sprite
 const level_files: Array = ['yf_level_001.png', 'yf_level_002.png']
@@ -10,9 +10,7 @@ var is_running: bool = true
 
 func _ready():
     randomize()
-    if level_index > level_files.size():
-        level_index = 0
-    var level_texture = load('res://assets/levels/' + level_files[level_index])
+    var level_texture = load('res://assets/levels/' + level_files[level_index-1])
     sprite.set_texture(level_texture)
     sprite.offset.y = -sprite.get_rect().size.y + screen_size.y
     _restart_enemy_timer(rand_range(4.0, 5.0))
@@ -22,6 +20,9 @@ func _process(delta):
         sprite.move_local_y(delta * scroll_speed)
         if sprite.position.y >= sprite.get_rect().size.y - screen_size.y:
             level_finished()
+
+func set_level_index(index: int) -> void:
+    level_index = clamp(index, 1, level_files.size())
 
 func level_finished():
     is_running = false
